@@ -142,7 +142,7 @@ COMMENT_CHAR_V2  = {LETTER}|{DIGIT}|[ \t]|{LineTerminator}|[\(\)\[\]\{\}\?\!\+\-
 "("					{ return symbol(TokenNames.LPAREN);}
 ")"					{ return symbol(TokenNames.RPAREN);}
 
-{STRING}			{String s = yytext().substring(1, yytext().length()-1);
+{STRING}			{String s = yytext().substring(0, yytext().length()); //changed for 1->0 and length -1 -> length
 					return symbol(TokenNames.STRING, s);}
 
 \"[^\r\n\"]*\"   { throw new Error("string with invalid chars"); }  //Bad string handlers:
